@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setSection } from '../actions';
 import '../assets/styles/components/Header.scss';
 import Logo from '../assets/static/images/logo.png';
 
-const Header = (props) => {
-    const { sectionActive } = props;
+const Header = () => {
+    const sectionActive = useSelector((state) => state.sectionActive);
+    const dispatch = useDispatch();
 
     const handleSetSection = (section) => {
-        props.setSection(section);
+        dispatch(setSection(section));
     };
 
     return (
@@ -49,14 +50,7 @@ const Header = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        sectionActive: state.sectionActive,
-    };
-};
+export default Header;
 
-const mapDispatchToProps = {
-    setSection,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+//mapStateToProps: trabajar con el estado inicial de las props del store
+// mapDispatchToProps: recibía la definición de acciones para modificar el estado de esas props
