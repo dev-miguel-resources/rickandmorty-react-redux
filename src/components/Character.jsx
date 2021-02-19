@@ -5,22 +5,24 @@ import { setFavorite, deleteFavorite } from '../actions';
 import '../assets/styles/components/Character.scss';
 import { ReactComponent as SVGStar } from '../assets/static/icons/star.svg';
 import CharacterDetail from './CharacterDetail';
+import useModal from '../custom-hooks/useModal';
 import Modal from './Modal';
 
 const Character = (props) => {
-    const [modal, setModal] = useState(false);
+    //const [modal, setModal] = useState(false);
+    const { modal, handleCloseModal, handleOpenModal } = useModal();
     const [favorite, setFavorite] = useState(false);
 
     const { data, favoriteCharacters } = props;
     const { id, image, name, status, species, gender } = data;
 
-    const handleCloseModal = () => {
+    /*const handleCloseModal = () => {
         setModal(false);
     };
 
     const handleOpenModal = () => {
         setModal(true);
-    };
+    };*/
 
     const handleSetFavorite = () => {
         props.setFavorite({ data });
